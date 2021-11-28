@@ -6,18 +6,20 @@ const Navbar = () => {
     <>
       <Nav>
         <Bars />
-
         <NavMenu>
-          <NavLink to="/about" activeStyle>
+        <NavLink to="/home">
+            Home
+          </NavLink>
+          <NavLink to="/about">
             About
           </NavLink>
-          <NavLink to="/table" activeStyle>
+          <NavLink to="/table">
             Table
           </NavLink>
-          <NavLink to="/graph" activeStyle>
+          <NavLink to="/graph">
             Graph
           </NavLink>
-          <NavLink to="/pie-chart" activeStyle>
+          <NavLink to="/pie-chart">
             Pie Chart
           </NavLink>
         </NavMenu>
@@ -27,3 +29,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

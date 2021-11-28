@@ -1,20 +1,31 @@
-import React from 'react';
-import ReactPlayer from 'react-player';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
-const About = () => {
+function About() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await fetch("https://orangevalleycaa.org/api/videos").then(
+        (response) => response.json()
+      );
+      setData(result);
+    };
+    fetchData();
+  }, []);
   return (
-    <div
-    style={{
-              display: 'flex',
-              justifyContent: 'Center',
-              alignItems: 'Center',
-              height: '100vh'
-            }}>
-      <ReactPlayer
-        url="https://www.youtube.com/watch?v=cmGr0RszHc8&t=95s"
-      />
+    <div className="App">
+      <header>
+        <h1>Videos</h1>
+      </header>
+      {data.map((video) => (
+        <div key={video.id}>
+          <h2>{video.name}</h2>
+          <video height={200} controls src={video.video_url} />
+        </div>
+      ))}
     </div>
-  )
+  );
 }
 
 export default About;
