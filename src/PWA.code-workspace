@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../../../dp-manage-app"
+		},
+		{
+			"path": "../../../Projects/dp-account-management-manual-rostering-app"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../dp-icominds-lib"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

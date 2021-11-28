@@ -11,10 +11,18 @@ const Table = () => {
 
   //Fetch call for table data on did mount
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/comments")
-      .then((res) => res.json())
-      .then((json) => setTableData(json));
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    // Adding data fetched from fake api
+    let response = await fetch(
+    "https://jsonplaceholder.typicode.com/comments"
+    );
+    let user = await response.json();
+    // Add and configure Series
+    setTableData(user);
+  };
 
   return (
     <div className="page" id="page">

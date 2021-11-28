@@ -1,15 +1,21 @@
-import React from 'react';
+import React , {Suspense , lazy} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-// import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import serviceworker from './serviceWorkerRegistration';
+import { retry} from './utils/commonFunctions';
+import {BrowserRouter as Router} from 'react-router-dom';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+// import  from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+const App = lazy(() => retry(() => import('./App')));
 
-ReactDOM.render(
+const main = ReactDOM.render(
+  <Suspense fallback={<div />}>
+     <Router>
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Router>
+  </Suspense>,
   document.getElementById('root')
 );
 
@@ -17,7 +23,7 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
 // serviceWorkerRegistration.register();
-serviceworker();
+serviceWorkerRegistration.register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
