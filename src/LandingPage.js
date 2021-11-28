@@ -10,7 +10,7 @@ const LandingPage = () => {
         alignItems: "center",
       }}
     >
-      <img style={{ width: "700px", height: "700px" }} src="PWA.jpg"></img>
+      <img style={{ width: "700px", height: "700px" }} src="PWA.png" alt="PWA"></img>
     </div>
   );
 };
