@@ -7,15 +7,16 @@ import { BrowserRouter as Router,Redirect, Switch, Route } from "react-router-do
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import Navbar from "./Navbar";
 const LandingPage = lazy(() => retry(() => import('./LandingPage')));
-// import Home from "./Home";
+//import Home from "./Home";
+//import LandingPage from './LandingPage';
 const Home = lazy(() => retry(() => import('./Home')));
-// import Table from "./Table";
+//import Table from "./Table";
 const Table = lazy(() => retry(() => import('./Table')));
-// import About from "./About";
-const About = lazy(() => retry(() => import('./About')));
-// import Graph from "./Graph";
+ //import About from "./About";
+ const About = lazy(() => retry(() => import('./About')));
+ //import Graph from "./Graph";
 const Graph = lazy(() => retry(() => import('./Graph')));
-// import PieChart from "./PieChart";
+ //import PieChart from "./PieChart";
 const PieChart = lazy(() => retry(() => import('./PieChart')));
 
 am4core.useTheme(am4themes_animated);
@@ -51,38 +52,59 @@ const Reports = () => {
       pageLink: '/graph',
       view: Graph,
       displayName: 'Graph',
-      showInNavbar: false,
+      showInNavbar: true,
     },
     {
       pageLink: '/pie-chart',
       view: PieChart,
       displayName: 'PieChart',
-      showInNavbar: false,
+      showInNavbar: true,
     },
   ];
 
   return (
     <div className="page" id="page">
-      <Suspense fallback={<div />}>
+      <Suspense fallback={<div>Loading.....</div>}>
       <Router>
       <Navbar />
       <Switch>
-          {pages.map((page, index) => {
-            return (
               <Route
                 exact
-                path={page.pageLink}
-                render={({match}) => <page.view />}
-                key={index}
+                path='./home'
+                render={<Home />}
+              />
+              <Route
+                exact
+                path='./'
+                render={<LandingPage />}
+              />
+              <Route
+                exact
+                path='./about'
+                render={<About />}
+              />
+              <Route
+                exact
+                path='./graph'
+                render={<Graph />}
+              />
+              <Route
+                exact
+                path='./table'
+                render={<Table />}
+              />
+              <Route
+                exact
+                path='./pie-chart'
+                render={<PieChart />}
               />
             );
-          })}
           <Redirect to="/" />
         </Switch>
       </Router>
       </Suspense>
     </div>
   );
-};
+  };
 
 export default Reports;
